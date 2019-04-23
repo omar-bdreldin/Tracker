@@ -1,7 +1,8 @@
 package com.o_bdreldin.tracker;
 
-import android.content.Context;
-
+/**
+ * Created by Omar Bdreldin on 4/23/2019
+ */
 public class TrackerOptions {
 
     private Tracker.Accuracy accuracy = Tracker.Accuracy.HIGH;

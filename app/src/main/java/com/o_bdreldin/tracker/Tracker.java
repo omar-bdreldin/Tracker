@@ -1,5 +1,12 @@
 package com.o_bdreldin.tracker;
 
+import android.location.Location;
+
+import io.reactivex.Observer;
+
+/**
+ * Created by Omar Bdreldin on 4/23/2019
+ */
 public interface Tracker {
 
     enum Accuracy {
@@ -17,5 +24,5 @@ public interface Tracker {
         SINGLE, CONTINUOUS
     }
 
-    Tracker onNewLocation();
+    Tracker observeLocation(Observer<Location> observer);
 }
