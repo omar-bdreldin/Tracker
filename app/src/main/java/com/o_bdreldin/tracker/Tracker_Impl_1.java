@@ -7,7 +7,16 @@ import android.content.Context;
 
 public class Tracker_Impl_1 extends BaseTracker {
 
-    public static Tracker with(Context context) {
-        return null;
+    private Context aContext;
+
+    protected Tracker_Impl_1() {
+    }
+
+    protected Tracker_Impl_1(Context context) {
+        this.aContext = context.getApplicationContext();
+    }
+
+    public static Tracker_Impl_1 with(Context context) {
+        return new Tracker_Impl_1(context);
     }
 }

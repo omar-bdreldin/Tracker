@@ -2,6 +2,7 @@ package com.o_bdreldin.tracker;
 
 import android.location.Location;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 
 /**
@@ -24,5 +25,13 @@ public interface Tracker {
         SINGLE, CONTINUOUS
     }
 
-    Tracker observeLocation(Observer<Location> observer);
+    void start();
+
+    void stop();
+
+    boolean isTracking();
+
+    Tracker options(TrackerOptions options);
+
+    Observable<Location> observeLocation(Observer<Location> observer);
 }
