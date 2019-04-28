@@ -27,6 +27,10 @@ public interface Tracker {
 
     void start();
 
+    void start(TrackerOptions options);
+
+    void refresh(TrackerOptions options);
+
     void stop();
 
     boolean isTracking();
