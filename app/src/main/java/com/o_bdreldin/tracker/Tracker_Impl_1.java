@@ -20,29 +20,4 @@ public final class Tracker_Impl_1 extends BaseTracker {
     public static Tracker_Impl_1 with(Context context) {
         return new Tracker_Impl_1(context);
     }
-
-    @Override
-    public void start() {
-
-    }
-
-    @Override
-    public void start(TrackerOptions options) {
-
-    }
-
-    @Override
-    public void refresh(TrackerOptions options) {
-
-    }
-
-    @Override
-    public void stop() {
-
-    }
-
-    @Override
-    public boolean isTracking() {
-        return false;
-    }
 }

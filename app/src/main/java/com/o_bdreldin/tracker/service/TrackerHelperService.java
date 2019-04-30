@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +15,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.o_bdreldin.tracker.utils.DefLog;
 
 import io.reactivex.Observer;
 import io.reactivex.subjects.PublishSubject;
@@ -24,6 +26,7 @@ public class TrackerHelperService extends Service {
     private Subject<LocationResult> locationResultSubject = PublishSubject.create();
     private Subject<LocationAvailability> locationAvailabilitySubject = PublishSubject.create();
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private LocationRequest locationRequest;
 
     public TrackerHelperService() {
     }
@@ -70,7 +73,10 @@ public class TrackerHelperService extends Service {
 
         @Override
         public void startTracking(LocationRequest locationRequest) {
-
+            TrackerHelperService.this.locationRequest = locationRequest;
+            if (fusedLocationProviderClient != null) {
+                fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+            }
         }
 
         @Override

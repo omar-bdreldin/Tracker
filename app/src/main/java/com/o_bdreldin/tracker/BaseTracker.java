@@ -1,5 +1,6 @@
 package com.o_bdreldin.tracker;
 
+import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
@@ -32,5 +33,9 @@ public abstract class BaseTracker implements Tracker {
     public Tracker options(TrackerOptions options) {
         this.trackerOptions = options;
         return this;
+    }
+
+    protected Observable<LocationEvent> getObservable() {
+        return Observable.ambArray(locationResultSubject);
     }
 }

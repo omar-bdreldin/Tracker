@@ -27,17 +27,15 @@ public interface Tracker {
         SINGLE, CONTINUOUS
     }
 
-    void start();
+    Observable<LocationEvent> start();
 
-    void start(TrackerOptions options);
+    Observable<LocationEvent> start(TrackerOptions options);
 
-    void refresh(TrackerOptions options);
+    Observable<LocationEvent> refresh(TrackerOptions options);
 
     void stop();
 
     boolean isTracking();
 
     Tracker options(TrackerOptions options);
-
-    Observable<LocationResult> observeLocationResultObservable();
 }
