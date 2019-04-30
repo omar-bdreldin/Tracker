@@ -8,10 +8,12 @@ import android.os.IBinder;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 
 import io.reactivex.Observer;
 import io.reactivex.subjects.PublishSubject;
@@ -21,6 +23,7 @@ public class TrackerHelperService extends Service {
 
     private Subject<LocationResult> locationResultSubject = PublishSubject.create();
     private Subject<LocationAvailability> locationAvailabilitySubject = PublishSubject.create();
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     public TrackerHelperService() {
     }
@@ -44,6 +47,7 @@ public class TrackerHelperService extends Service {
     public void onCreate() {
         super.onCreate();
         // initialization
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
     public static Intent getStartIntent(@NonNull Context context
