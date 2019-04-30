@@ -12,6 +12,10 @@ public class TrackerOptions {
     private TrackerOptions() {
     }
 
+    /**
+     * Creates an instance of TrackerOptions with default values for accuracy, frequency and mode
+     * @return A new instance of TrackerOptions
+     */
     public static TrackerOptions create() {
         return new TrackerOptions();
     }

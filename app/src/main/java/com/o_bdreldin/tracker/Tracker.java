@@ -2,6 +2,8 @@ package com.o_bdreldin.tracker;
 
 import android.location.Location;
 
+import com.google.android.gms.location.LocationResult;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 
@@ -37,5 +39,5 @@ public interface Tracker {
 
     Tracker options(TrackerOptions options);
 
-    Observable<Location> observeLocation(Observer<Location> observer);
+    Observable<LocationResult> observeLocationResultObservable();
 }

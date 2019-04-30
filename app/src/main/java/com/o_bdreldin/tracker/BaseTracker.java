@@ -1,28 +1,22 @@
 package com.o_bdreldin.tracker;
 
-import android.location.Location;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 /**
  * Created by Omar Bdreldin on 4/23/2019
  */
 public abstract class BaseTracker implements Tracker {
 
-    private PublishSubject<Location> locationPublishSubject = PublishSubject.create();
-    private TrackerOptions trackerOptions = TrackerOptions.create()
-            .accuracy(Accuracy.HIGH)
-            .frequency(Frequency.HIGH)
-            .mode(Mode.CONTINUOUS);
+    private Subject<LocationEvent> locationResultSubject = PublishSubject.create();
+    private TrackerOptions trackerOptions = TrackerOptions.create();
 
-    protected PublishSubject<Location> getLocationPublishSubject() {
-        return locationPublishSubject;
+    protected Subject<LocationEvent> getLocationResultSubject() {
+        return locationResultSubject;
     }
 
-    protected void setLocationPublishSubject(PublishSubject<Location> locationPublishSubject) {
-        this.locationPublishSubject = locationPublishSubject;
+    protected void setLocationResultSubject(Subject<LocationEvent> locationResultSubject) {
+        this.locationResultSubject = locationResultSubject;
     }
 
     protected TrackerOptions getTrackerOptions() {
@@ -38,10 +32,5 @@ public abstract class BaseTracker implements Tracker {
     public Tracker options(TrackerOptions options) {
         this.trackerOptions = options;
         return this;
-    }
-
-    @Override
-    public Observable<Location> observeLocation(Observer<Location> observer) {
-        return Observable.ambArray(locationPublishSubject);
     }
 }

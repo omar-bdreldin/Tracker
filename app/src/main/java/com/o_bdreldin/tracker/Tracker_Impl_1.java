@@ -2,10 +2,11 @@ package com.o_bdreldin.tracker;
 
 /**
  * Created by Omar Bdreldin on 4/23/2019
+ * This class implements the Tracker interface using Foreground Service
  */
 import android.content.Context;
 
-public class Tracker_Impl_1 extends BaseTracker {
+public final class Tracker_Impl_1 extends BaseTracker {
 
     private Context aContext;
 
@@ -18,5 +19,30 @@ public class Tracker_Impl_1 extends BaseTracker {
 
     public static Tracker_Impl_1 with(Context context) {
         return new Tracker_Impl_1(context);
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void start(TrackerOptions options) {
+
+    }
+
+    @Override
+    public void refresh(TrackerOptions options) {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public boolean isTracking() {
+        return false;
     }
 }
