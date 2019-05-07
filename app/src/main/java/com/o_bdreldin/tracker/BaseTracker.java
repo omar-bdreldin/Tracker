@@ -1,5 +1,11 @@
 package com.o_bdreldin.tracker;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -9,33 +15,22 @@ import io.reactivex.subjects.Subject;
  */
 public abstract class BaseTracker implements Tracker {
 
-    private Subject<LocationEvent> locationResultSubject = PublishSubject.create();
-    private TrackerOptions trackerOptions = TrackerOptions.create();
+    private Subject<LocationResult> locationResultSubject = PublishSubject.create();
+    private Subject<LocationAvailability> locationAvailabilitySubject = PublishSubject.create();
+    private LocationRequest request = LocationRequest.create();
+    private Mode mode = Mode.CONTINUOUS;
 
-    protected Subject<LocationEvent> getLocationResultSubject() {
+    protected Subject<LocationResult> getLocationResultSubject() {
         return locationResultSubject;
     }
 
-    protected void setLocationResultSubject(Subject<LocationEvent> locationResultSubject) {
-        this.locationResultSubject = locationResultSubject;
-    }
-
-    protected TrackerOptions getTrackerOptions() {
-        return trackerOptions;
-    }
-
-    protected void setTrackerOptions(TrackerOptions trackerOptions) {
-        if (trackerOptions != null)
-            this.trackerOptions = trackerOptions;
+    protected Subject<LocationAvailability> getLocationAvailabilitySubject() {
+        return locationAvailabilitySubject;
     }
 
     @Override
-    public Tracker options(TrackerOptions options) {
-        this.trackerOptions = options;
+    public Tracker locationRequest(@NonNull LocationRequest request) {
+        this.request = request;
         return this;
-    }
-
-    protected Observable<LocationEvent> getObservable() {
-        return Observable.ambArray(locationResultSubject);
     }
 }

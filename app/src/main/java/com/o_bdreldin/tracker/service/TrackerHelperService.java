@@ -51,6 +51,7 @@ public class TrackerHelperService extends Service {
         super.onCreate();
         // initialization
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        // TODO: should handle startForeground()
     }
 
     public static Intent getStartIntent(@NonNull Context context
