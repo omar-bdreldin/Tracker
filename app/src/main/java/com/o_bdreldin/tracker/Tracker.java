@@ -25,6 +25,8 @@ public interface Tracker {
 
     void stop();
 
+    void terminate();
+
     // TODO: once a Tracker instance is created, it should be aware if the service is already running in case of CONTINUOUS Mode
     boolean isTracking();
 
@@ -36,5 +38,5 @@ public interface Tracker {
 
     Tracker observeLocationAvailability(@NonNull Observer<LocationAvailability> observer);
 
-    Tracker apply(NotificationOption option);
+    Tracker notificationOptions(@NonNull NotificationOption option);
 }

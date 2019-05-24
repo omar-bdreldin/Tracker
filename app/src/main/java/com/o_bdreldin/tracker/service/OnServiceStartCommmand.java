@@ -1,5 +1,7 @@
 package com.o_bdreldin.tracker.service;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -7,5 +9,5 @@ import java.io.Serializable;
  */
 public interface OnServiceStartCommmand extends Serializable {
 
-    void onStartCommand(Communicator communicator);
+    void onStartCommand(@NonNull Communicator communicator);
 }

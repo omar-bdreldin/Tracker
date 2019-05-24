@@ -15,7 +15,6 @@ import io.reactivex.Observer;
  */
 public interface Communicator extends Serializable {
     void setNotification(Notification notification);
-    void startTracking();
     void startTracking(LocationRequest locationRequest);
     void refreshTracking(LocationRequest locationRequest);
     void stopTracking();

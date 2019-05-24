@@ -68,11 +68,6 @@ public class TrackerHelperService extends Service {
         }
 
         @Override
-        public void startTracking() {
-
-        }
-
-        @Override
         public void startTracking(LocationRequest locationRequest) {
             TrackerHelperService.this.locationRequest = locationRequest;
             if (fusedLocationProviderClient != null) {
