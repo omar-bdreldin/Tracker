@@ -18,8 +18,7 @@ public abstract class BaseTracker implements Tracker {
 
     @Override
     public void start(@NonNull LocationRequest request) {
-        locationRequest(request);
-        start();
+        locationRequest(request).start();
     }
 
     @Override
