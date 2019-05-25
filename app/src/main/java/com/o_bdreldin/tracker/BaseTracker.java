@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
+import com.o_bdreldin.tracker.notification.NotificationOption;
 
 import io.reactivex.Observer;
 
@@ -14,7 +15,8 @@ import io.reactivex.Observer;
 public abstract class BaseTracker implements Tracker {
     private LocationRequest request = LocationRequest.create();
     private Mode mode = Mode.CONTINUOUS;
-    private NotificationOption notificationOption = new NotificationOption();
+    private NotificationOption notificationOption = new NotificationOption.Builder().build();
+    protected boolean tracking = false;
 
     @Override
     public void start(@NonNull LocationRequest request) {
@@ -46,5 +48,10 @@ public abstract class BaseTracker implements Tracker {
     @Override
     public Tracker notificationOptions(@NonNull NotificationOption option) {
         return this;
+    }
+
+    @Override
+    public boolean isTracking() {
+        return tracking;
     }
 }

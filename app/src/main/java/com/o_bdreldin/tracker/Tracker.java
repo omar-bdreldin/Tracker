@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
+import com.o_bdreldin.tracker.notification.NotificationOption;
 
 import io.reactivex.Observer;
 

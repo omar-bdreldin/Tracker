@@ -19,6 +19,7 @@ public final class Tracker_Impl_1 extends BaseTracker {
 
     private final Application application;
     private Communicator communicator;
+    private boolean serviceStarted;
 
     public Application getApplication() {
         return application;
@@ -36,6 +37,7 @@ public final class Tracker_Impl_1 extends BaseTracker {
     public void start() {
         Intent intent = TrackerHelperService.getStartIntent(application, communicator -> {
             this.communicator = communicator;
+            serviceStarted = true;
             communicator.observeLocationResult();
             communicator.observeLocationAvailability();
             communicator.setNotification();
