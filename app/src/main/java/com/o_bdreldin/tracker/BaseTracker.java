@@ -13,10 +13,12 @@ import io.reactivex.Observer;
  * Created by Omar Bdreldin on 4/23/2019
  */
 public abstract class BaseTracker implements Tracker {
-    private LocationRequest request = LocationRequest.create();
-    private Mode mode = Mode.CONTINUOUS;
-    private NotificationOption notificationOption = new NotificationOption.Builder().build();
+    protected LocationRequest locationRequest = LocationRequest.create();
+    protected Mode mode = Mode.CONTINUOUS;
+    protected NotificationOption notificationOption = new NotificationOption.Builder().build();
     protected boolean tracking = false;
+    protected Observer<LocationResult> locationResultObserver;
+    protected Observer<LocationAvailability> locationAvailabilityObserver;
 
     @Override
     public void start(@NonNull LocationRequest request) {
@@ -25,7 +27,7 @@ public abstract class BaseTracker implements Tracker {
 
     @Override
     public Tracker locationRequest(@NonNull LocationRequest request) {
-        this.request = request;
+        locationRequest = request;
         return this;
     }
 
@@ -37,16 +39,19 @@ public abstract class BaseTracker implements Tracker {
 
     @Override
     public Tracker observeLocationResult(@NonNull Observer<LocationResult> observer) {
-        return null;
+        locationResultObserver = observer;
+        return this;
     }
 
     @Override
     public Tracker observeLocationAvailability(@NonNull Observer<LocationAvailability> observer) {
-        return null;
+        locationAvailabilityObserver = observer;
+        return this;
     }
 
     @Override
     public Tracker notificationOptions(@NonNull NotificationOption option) {
+        notificationOption = option;
         return this;
     }
 

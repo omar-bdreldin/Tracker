@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.location.LocationRequest;
 import com.o_bdreldin.tracker.service.Communicator;
 import com.o_bdreldin.tracker.service.TrackerHelperService;
+import com.o_bdreldin.tracker.utils.NotificationFactory;
 
 public final class Tracker_Impl_1 extends BaseTracker {
 
@@ -38,10 +39,10 @@ public final class Tracker_Impl_1 extends BaseTracker {
         Intent intent = TrackerHelperService.getStartIntent(application, communicator -> {
             this.communicator = communicator;
             serviceStarted = true;
-            communicator.observeLocationResult();
-            communicator.observeLocationAvailability();
-            communicator.setNotification();
-            communicator.startTracking();
+            communicator.observeLocationResult(locationResultObserver);
+            communicator.observeLocationAvailability(locationAvailabilityObserver);
+            communicator.setNotification(NotificationFactory.createNotification(application, notificationOption));
+            communicator.startTracking(locationRequest);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

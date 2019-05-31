@@ -19,6 +19,6 @@ public interface Communicator extends Serializable {
     void refreshTracking(LocationRequest locationRequest);
     void stopTracking();
     void stopTrackingAndSelf();
-    Observer<LocationResult> observeLocationResult(Observer<LocationResult> observer);
-    Observer<LocationAvailability> observeLocationAvailability(Observer<LocationAvailability> observer);
+    void observeLocationResult(Observer<LocationResult> observer);
+    void observeLocationAvailability(Observer<LocationAvailability> observer);
 }
